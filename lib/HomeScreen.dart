@@ -12,7 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  var _padding = 6.0;
+  double _padding = 6.0;
+  late DateTime buttonClickTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -36,61 +37,45 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () {
-                Timer(const Duration(milliseconds: 1000), () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const TwinAnimationPage()));
-                });
-              },
-              onTapUp: (_) {
-                setState(() {
-                  _padding = 6.0;
-                });
-              },
-              onTapDown: (_) {
-                setState(() {
-                  _padding = 0.0;
-                });
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 100),
-                padding: EdgeInsets.only(bottom: _padding,right: _padding),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white70
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                      child: Text("Twin Animation",
-                          style: TextStyle(color: Colors.black, fontSize: 18.0)),
-                    )),
-              ),
-            )
+            customButton("Twin Animation", const TwinAnimationPage())
           ],
         ),
       ),
     );
   }
 
-  bool isRedundentClick(DateTime currentTime) {
-    if (loginClickTime == null) {
-      loginClickTime = currentTime;
-      print("first click");
-      return false;
-    }
-    print('diff is ${currentTime.difference(loginClickTime).inSeconds}');
-    if (currentTime.difference(loginClickTime).inSeconds < 10) {
-      // set this difference time in seconds
-      return true;
-    }
-
-    loginClickTime = currentTime;
-    return false;
+  Widget customButton(String title, Widget pageRoute){
+    return GestureDetector(
+      onTap: () {
+        Timer(const Duration(milliseconds: 1000), () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => pageRoute));
+        });
+      },
+      onTapDown: (_) => setState(() {
+        _padding = 0.0;
+      }),
+      onTapUp: (_) => setState(() {
+        _padding = 6.0;
+      }),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        padding: EdgeInsets.only(bottom: _padding,right: _padding),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white70
+        ),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+              child: Text("Twin Animation",
+                  style: TextStyle(color: Colors.black, fontSize: 18.0)),
+            )),
+      ),
+    );
   }
 
 }
