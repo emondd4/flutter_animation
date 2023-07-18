@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation/TwinAnimationScreen.dart';
 
+import 'AnimatedContainerScreen.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -37,7 +39,9 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customButton("Twin Animation", const TwinAnimationPage())
+            customButton("Twin Animation", const TwinAnimationPage()),
+            const SizedBox(height: 10.0,),
+            customButton("Animated Container", const AnimatedContainerPage()),
           ],
         ),
       ),
@@ -69,10 +73,10 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-              child: Text("Twin Animation",
-                  style: TextStyle(color: Colors.black, fontSize: 18.0)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+              child: Text(title,
+                  style: const TextStyle(color: Colors.black, fontSize: 18.0)),
             )),
       ),
     );

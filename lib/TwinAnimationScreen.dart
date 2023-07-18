@@ -43,7 +43,7 @@ class _TwinAnimationPageState extends State<TwinAnimationPage> with SingleTicker
           color: Colors.white,
         ),
         title: const Text(
-          "Flutter Animation",
+          "Tween Animation",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.deepOrangeAccent,
