@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/OpacityAnimationScreen.dart';
 import 'package:flutter_animation/TwinAnimationScreen.dart';
 
 import 'AnimatedContainerScreen.dart';
@@ -42,6 +43,8 @@ class _HomePageState extends State<HomePage> {
             customButton("Twin Animation", const TwinAnimationPage()),
             const SizedBox(height: 10.0,),
             customButton("Animated Container", const AnimatedContainerPage()),
+            const SizedBox(height: 10.0,),
+            customButton("Opacity Animation", const OpacityAnimationPage()),
           ],
         ),
       ),
