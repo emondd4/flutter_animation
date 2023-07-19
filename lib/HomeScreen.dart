@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/HeroAnimationScreen.dart';
 import 'package:flutter_animation/OpacityAnimationScreen.dart';
 import 'package:flutter_animation/TwinAnimationScreen.dart';
 
@@ -45,6 +46,8 @@ class _HomePageState extends State<HomePage> {
             customButton("Animated Container", const AnimatedContainerPage()),
             const SizedBox(height: 10.0,),
             customButton("Opacity Animation", const OpacityAnimationPage()),
+            const SizedBox(height: 10.0,),
+            customButton("Hero Animation", const HeroAnimationPage()),
           ],
         ),
       ),
