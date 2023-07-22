@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  double _padding = 6.0;
+  final List<double> _paddingList = [6.0,6.0,6.0,6.0,6.0,6.0];
   late DateTime buttonClickTime = DateTime.now();
 
   @override
@@ -43,24 +43,24 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customButton("Twin Animation", const TwinAnimationPage()),
+            customButton("Twin Animation", const TwinAnimationPage(),0),
             const SizedBox(height: 10.0,),
-            customButton("Animated Container", const AnimatedContainerPage()),
+            customButton("Animated Container", const AnimatedContainerPage(),1),
             const SizedBox(height: 10.0,),
-            customButton("Opacity Animation", const OpacityAnimationPage()),
+            customButton("Opacity Animation", const OpacityAnimationPage(),2),
             const SizedBox(height: 10.0,),
-            customButton("Hero Animation", const HeroAnimationPage()),
+            customButton("Hero Animation", const HeroAnimationPage(),3),
             const SizedBox(height: 10.0,),
-            customButton("Ripple Animation", const RippleAnimationPage()),
+            customButton("Ripple Animation", const RippleAnimationPage(),4),
             const SizedBox(height: 10.0,),
-            customButton("Hover Animation", const HoverAnimationPage()),
+            customButton("Hover Animation", const HoverAnimationPage(),5),
           ],
         ),
       ),
     );
   }
 
-  Widget customButton(String title, Widget pageRoute){
+  Widget customButton(String title, Widget pageRoute,int position){
     return GestureDetector(
       onTap: () {
         Timer(const Duration(milliseconds: 1000), () {
@@ -68,14 +68,14 @@ class _HomePageState extends State<HomePage> {
         });
       },
       onTapDown: (_) => setState(() {
-        _padding = 0.0;
+        _paddingList[position] = 0.0;
       }),
       onTapUp: (_) => setState(() {
-        _padding = 6.0;
+        _paddingList[position] = 6.0;
       }),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        padding: EdgeInsets.only(bottom: _padding,right: _padding),
+        padding: EdgeInsets.only(bottom: _paddingList[position],right: _paddingList[position]),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: Colors.white70
